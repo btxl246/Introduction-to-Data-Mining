@@ -5,14 +5,21 @@ import weka.core.converters.CSVLoader;
 import java.io.*;
 
 public class ARFFProcessor {
-    public static void main(String[] args) throws IOException {
-        CSVLoader loader = new CSVLoader();
-        loader.setSource(new File("./new_data.csv"));
-        Instances data = loader.getDataSet();
+    public ARFFProcessor() {
+    }
 
-        ArffSaver saver = new ArffSaver();
-        saver.setInstances(data);
-        saver.setFile(new File("./new_data.arff"));
-        saver.writeBatch();
+    public void createARFF(String inputCSV, String outputARFF) {
+        try {
+            CSVLoader loader = new CSVLoader();
+            loader.setSource(new File(inputCSV));
+            Instances data = loader.getDataSet();
+
+            ArffSaver saver = new ArffSaver();
+            saver.setInstances(data);
+            saver.setFile(new File(outputARFF));
+            saver.writeBatch();
+        } catch(IOException ioe) {
+            ioe.printStackTrace();
+        }
     }
 }
