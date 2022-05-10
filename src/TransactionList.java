@@ -105,7 +105,10 @@ public class TransactionList {
                     }
                     else {
                         Transaction transaction = this.list.get(a);
-                        transaction.getCodeList().add(code);    // Add code to existing codeList
+                        int b = transaction.getCodeList().indexOf(code);
+                        if (b == -1) {  // Not found
+                            transaction.getCodeList().add(code);    // Add code to existing codeList
+                        }
                     }
                 }
             }
