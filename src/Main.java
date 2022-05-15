@@ -1,23 +1,16 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
+/**
+ * Main class
+ */
 public class Main {
     public static void main(String[] args) {
         CSVProcessor cp = new CSVProcessor();
-        cp.createCSV("./files/test.csv", "./files/new_test.csv");
-
+        cp.createCSV("./files/data.csv", "./files/processed_data.csv");
+        
         ARFFProcessor ap = new ARFFProcessor();
-        ap.createARFF("./files/new_test.csv", "./files/new_test.arff");
+        ap.createARFF("./files/processed_data.csv", "./files/processed_data.arff");
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
         TransactionList tl = new TransactionList();
-        System.out.println(dtf.format(now));
-        tl.createUngroupedList("./files/new_test.csv");
-        tl.saveListToFile("./files/new_test_ungrouped_list.csv");
-        System.out.println(dtf.format(now));
-        tl.createGroupedList("./files/new_test.csv");
-        tl.saveListToFile("./files/new_test_grouped_list.csv");
-        System.out.println(dtf.format(now));
+        tl.createGroupedList("./files/processed_data.csv");
+        tl.saveListToFile("./files/processed_data_grouped_list.csv");
     }
 }

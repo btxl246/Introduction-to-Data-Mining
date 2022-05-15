@@ -1,0 +1,14 @@
+@relation new_test
+
+@attribute InvoiceNo numeric
+@attribute StockCode {85123A,21506}
+@attribute Description {'white hanging heart t-light holder','fancy font birthday card  '}
+@attribute Quantity numeric
+@attribute InvoiceDate {'12/1/2010 8:26','8/12/2011 16:30'}
+@attribute UnitPrice numeric
+@attribute CustomerID numeric
+@attribute Country {'United Kingdom'}
+
+@data
+536365,85123A,'white hanging heart t-light holder',6,'12/1/2010 8:26',2.55,17850,'United Kingdom'
+563193,21506,'fancy font birthday card  ',1,'8/12/2011 16:30',0.83,?,'United Kingdom'

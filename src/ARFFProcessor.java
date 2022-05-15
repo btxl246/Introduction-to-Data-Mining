@@ -4,10 +4,22 @@ import weka.core.converters.CSVLoader;
 
 import java.io.*;
 
+/**
+ * Processes ARFF
+ */
 public class ARFFProcessor {
+
+    /**
+     * Empty constructor
+     */
     public ARFFProcessor() {
     }
 
+    /**
+     * Creates a .arff file from a .csv file
+     * @param inputCSV fileName
+     * @param outputARFF fileName
+     */
     public void createARFF(String inputCSV, String outputARFF) {
         try {
             CSVLoader loader = new CSVLoader();
