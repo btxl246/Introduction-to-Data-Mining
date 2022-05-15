@@ -1,13 +1,17 @@
-1. Process CSV
-Original file:
-* old_data.csv
+# Introduction to Data Mining project
 
-Direct replacements in data.csv:
-* Commas because they cause the line to be split into more Strings than there are columns
+File: data.csv
 
-Replacements in new_data.csv:
-* Single quotes and double quotes because class Instances cannot parse quotes
+1. CSVProcessor
+- Skip rows that are incomplete or unnecessary.
+- Replace single quotes, double quotes, and commas between double quotes.
 
-2. Process ARFF
+2. ARFFProcessor
+- Create a .arff file from a .csv file.
 
-3. Create transaction list
+3. Transaction
+- A transaction contains an InvoiceNo and StockCodes.
+
+4. TransactionList
+- Group transactions with the same InvoiceNo in the same entry.
+- Save the list to a .csv file.
