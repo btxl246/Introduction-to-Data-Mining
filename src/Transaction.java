@@ -42,7 +42,7 @@ public class Transaction {
             StringBuilder sb = new StringBuilder();
 
             for (String str : this.codeList) {
-                sb.append(str).append(", ");
+                sb.append(str).append("; ");
             }
 
             return String.valueOf(sb);

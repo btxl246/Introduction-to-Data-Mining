@@ -124,7 +124,7 @@ public class TransactionList {
     public void saveListToFile(String outputCSV) {
         try {
             FileWriter outputFile = new FileWriter(outputCSV);
-            CSVWriter writer = new CSVWriter(outputFile, '|', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
+            CSVWriter writer = new CSVWriter(outputFile, ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
 
             for (Transaction t : this.list) {
                 writer.writeNext(new String[]{t.getId(), t.getCodeListString()});
