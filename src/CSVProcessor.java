@@ -19,8 +19,8 @@ public class CSVProcessor {
                 tempArr = line.split(",");
 
                 for (int i = 0; i < tempArr.length; i++) {
-                    tempArr[i] = tempArr[i].replaceAll("'","_");
-                    tempArr[i] = tempArr[i].replaceAll("\"","__");
+                    tempArr[i] = tempArr[i].replaceAll("'","");
+                    tempArr[i] = tempArr[i].replaceAll("\"","");
                 }
 
                 writer.writeNext(tempArr);
