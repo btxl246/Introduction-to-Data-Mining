@@ -1,7 +1,4 @@
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
@@ -14,25 +11,26 @@ public class Analysis {
     public static final String INVOICEDATE = "InvoiceDate";
     private List<List<String>> list;
 
+    /**
+     * Empty constructor
+     */
     public Analysis() {
     }
 
     /**
-     * Turns a .csv file into a list
-     * @param inputCSV fileName
+     * Getter method
+     * @return List
      */
-    public void loadCSV(String inputCSV) {
-        this.list = new ArrayList<>();
+    public List<List<String>> getList() {
+        return list;
+    }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(inputCSV))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                this.list.add(Arrays.asList(values));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    /**
+     * Setter method
+     * @param list
+     */
+    public void setList(List<List<String>> list) {
+        this.list = list;
     }
 
     /**
@@ -116,7 +114,8 @@ public class Analysis {
 
     public static void main(String[] args) {
         Analysis analysis = new Analysis();
-        analysis.loadCSV("./files/processed_data.csv");
+        List<List<String>> list = new CSVProcessor().loadCSV("./files/processed_data.csv");
+        analysis.setList(list);
         analysis.createBarChart("Country");
         analysis.maxFrequency("Country");
         analysis.minFrequency("Country");

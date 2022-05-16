@@ -1,0 +1,11 @@
+@relation test
+
+@attribute A {TRUE,FALSE}
+@attribute B {FALSE,TRUE}
+@attribute C {TRUE,FALSE}
+
+@data
+TRUE,FALSE,TRUE
+TRUE,TRUE,FALSE
+TRUE,TRUE,TRUE
+FALSE,FALSE,FALSE

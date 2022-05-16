@@ -140,7 +140,7 @@ public class TransactionList {
     }
 
     /**
-     * Export ArrayList to a .csv file
+     * Exports ArrayList to a .csv file
      * @param outputCSV fileName
      */
     public void saveListToFile(String outputCSV) {

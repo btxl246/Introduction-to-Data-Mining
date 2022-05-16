@@ -1,5 +1,7 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 import com.opencsv.CSVWriter;
@@ -8,6 +10,7 @@ import com.opencsv.CSVWriter;
  * Processes data.csv
  */
 public class CSVProcessor {
+    private List<List<String>> list;
 
     /**
      * Empty constructor
@@ -68,6 +71,75 @@ public class CSVProcessor {
             writer.close();
         } catch(IOException ioe) {
             ioe.printStackTrace();
+        }
+    }
+
+    /**
+     * Turns a .csv file into a List
+     * @param inputCSV fileName
+     */
+    public List<List<String>> loadCSV(String inputCSV) {
+        List<List<String>> list = new ArrayList<>();
+
+        try (
+            BufferedReader br = new BufferedReader(new FileReader(inputCSV))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                list.add(Arrays.asList(values));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        this.list = list;
+
+        return list;
+    }
+
+    /**
+     * Removes a column from List
+     * @param column Name of column
+     * @return List
+     */
+    public List<List<String>> removeColumn(String column) {
+        List<List<String>> list = new ArrayList<>();
+        int index = this.list.get(0).indexOf(column);   // Get index from name
+        for (int i = 0; i < this.list.size(); i++) {    // Every row
+            List<String> strings = new ArrayList<>();
+            for (int j = 0; j < this.list.get(i).size(); j++) {     // Every string
+                if (j == index) {   // Skip if index
+                    continue;
+                }
+                strings.add(this.list.get(i).get(j));   // Add string
+            }
+            list.add(strings);  // Add row without column
+        }
+
+        this.list = list;
+
+        return list;
+    }
+
+    /**
+     * Exports List to a .csv file
+     * @param outputCSV
+     */
+    public void saveListToFile(String outputCSV) {
+        try {
+            FileWriter outputFile = new FileWriter(outputCSV);
+            CSVWriter writer = new CSVWriter(outputFile, ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
+            for (List<String> strings : this.list) {
+                String[] arr = new String[strings.size()];  // Turn List to Array
+                for (int i = 0; i < arr.length; i++) {
+                    arr[i] = strings.get(i);
+                }
+                writer.writeNext(arr);   // InvoiceNo, [StockCodes]
+            }
+
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
