@@ -61,7 +61,7 @@ public class TransactionList {
     }
 
     /**
-     * Creates a list without grouping StockCodes into one InvoiceNo
+     * Creates an ArrayList without grouping StockCodes into one InvoiceNo
      * @param inputCSV fileName
      * @return ArrayList
      */
@@ -93,7 +93,7 @@ public class TransactionList {
     }
 
     /**
-     * Creates a list by grouping StockCodes into one InvoiceNo
+     * Creates an ArrayList by grouping StockCodes into one InvoiceNo
      * @param inputCSV fileName
      * @return ArrayList
      */
@@ -140,14 +140,14 @@ public class TransactionList {
     }
 
     /**
-     * Export List to a .csv file
+     * Export ArrayList to a .csv file
      * @param outputCSV fileName
      */
     public void saveListToFile(String outputCSV) {
         try {
             FileWriter outputFile = new FileWriter(outputCSV);
             CSVWriter writer = new CSVWriter(outputFile, ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
-
+            writer.writeNext(new String[]{"InvoiceNo", "StockCode"});
             for (Transaction t : this.list) {
                 writer.writeNext(new String[]{t.getId(), t.getCodeListString()});   // InvoiceNo, [StockCodes]
             }

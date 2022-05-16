@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         CSVProcessor cp = new CSVProcessor();
         cp.createCSV("./files/data.csv", "./files/processed_data.csv");
-        
+
         ARFFProcessor ap = new ARFFProcessor();
         ap.createARFF("./files/processed_data.csv", "./files/processed_data.arff");
 
